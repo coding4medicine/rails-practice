@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'pages/page0'
   get 'pages/page1'
   get 'pages/page2'
+  get 'pages/plan'
   get 'pages/book'
 
   root :to => 'pages#index'
