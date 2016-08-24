@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @card.token %>
+</p>
+
+<p>
+  <strong>User id:</strong>
+  <%= @card.user_id %>
+</p>
+
+<p>
+  <strong>Last4:</strong>
+  <%= @card.last4 %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

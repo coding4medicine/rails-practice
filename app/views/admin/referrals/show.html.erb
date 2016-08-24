@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Oldemail:</strong>
+  <%= @referral.OldEmail %>
+</p>
+
+<p>
+  <strong>Newemail:</strong>
+  <%= @referral.NewEmail %>
+</p>
+
+<p>
+  <strong>Old id:</strong>
+  <%= @referral.old_id %>
+</p>
+
+<p>
+  <strong>New id:</strong>
+  <%= @referral.new_id %>
+</p>
+
+<p>
+  <strong>Bonuspaid:</strong>
+  <%= @referral.bonuspaid %>
+</p>
+
+<%= link_to 'Edit', edit_referral_path(@referral) %> |
+<%= link_to 'Back', referrals_path %>

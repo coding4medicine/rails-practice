@@ -1,0 +1,22 @@
+<%= form_for(sshkey) do |f| %>
+  <% if sshkey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sshkey.errors.count, "error") %> prohibited this sshkey from being saved:</h2>
+
+      <ul>
+      <% sshkey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :key %>
+    <%= f.text_field :key %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

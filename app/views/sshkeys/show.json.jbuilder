@@ -1,0 +1,1 @@
+json.partial! "sshkeys/sshkey", sshkey: @sshkey

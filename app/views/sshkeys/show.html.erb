@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User id:</strong>
+  <%= @sshkey.user_id %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @sshkey.key %>
+</p>
+
+<%= link_to 'Edit', edit_sshkey_path(@sshkey) %> |
+<%= link_to 'Back', sshkeys_path %>
