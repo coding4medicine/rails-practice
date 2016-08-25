@@ -1,18 +1,16 @@
 class PagesController < ApplicationController
 
   before_action :authenticate_user! 
-  skip_before_action :authenticate_user!, :only => [:index, :book, :plan]
+  skip_before_action :authenticate_user!, :only => [:index, :products]
 
   def index
   end
 
-  def book
+  def products
 	@books=Book.all
-  end
-
-  def plan
 	@plans=Plan.all
   end
+
 
   def page_good
         if current_user.good?

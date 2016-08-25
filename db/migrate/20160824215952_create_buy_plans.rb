@@ -1,6 +1,6 @@
-class CreatePlanPurchases < ActiveRecord::Migration[5.0]
+class CreateBuyPlans < ActiveRecord::Migration[5.0]
   def change
-    create_table :plan_purchases do |t|
+    create_table :buy_plans do |t|
       t.integer :user_id
       t.integer :plan_id
       t.datetime :request_date

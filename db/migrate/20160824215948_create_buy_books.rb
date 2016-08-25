@@ -1,6 +1,6 @@
-class CreateBookPurchases < ActiveRecord::Migration[5.0]
+class CreateBuyBooks < ActiveRecord::Migration[5.0]
   def change
-    create_table :book_purchases do |t|
+    create_table :buy_books do |t|
       t.integer :user_id
       t.integer :book_id
       t.integer :card_id
