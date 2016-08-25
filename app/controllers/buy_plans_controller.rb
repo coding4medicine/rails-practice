@@ -4,7 +4,13 @@ class BuyPlansController < ApplicationController
 
   # GET /buy_plans/new
   def new
-	@plan=Plan.find(params[:plan_id])
+        @bought=BuyPlan.where(user_id: current_user.id).where(plan_id: params[:plan_id])
+
+        if @bought.present?
+                redirect_to pages_page0_path
+        else
+		@plan=Plan.find(params[:plan_id])
+        end
   end
 
   # POST /buy_plans

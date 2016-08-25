@@ -1,4 +1,18 @@
 <h1>Pages#page0</h1>
 <p>Find me in app/views/pages/page0.html.erb</p>
 
+<p>Purchased books</p>
+    <% @books.each do |book| %>
+        <p>book ID = <%= book.book_id %></p>
+    <% end %>
+
+<p>Purchased plans</p>
+    <% @plans.each do |plan| %>
+        <p>plan ID = <%= plan.plan_id %></p>
+    <% end %>
+
+
+<%= link_to "Change your password", edit_user_registration_path %>
+<p>
+
 <a href=/users/sign_out>sign out</a>

@@ -4,9 +4,14 @@ class BuyBooksController < ApplicationController
 
   # GET /buy_books/new
   def new
-	# if current user already bought the book, take to control panel
-	# else continue with buy
-	@book=Book.find(params[:book_id])
+	# If book is already purchased by user, redirect to control panel
+	# else buy the book
+	@bought=BuyBook.where(user_id: current_user.id).where(book_id: params[:book_id])
+	if @bought.present?
+     		redirect_to pages_page0_path
+	else
+		@book=Book.find(params[:book_id])
+	end
   end
 
   # POST /buy_books
@@ -14,18 +19,20 @@ class BuyBooksController < ApplicationController
   def create
     # Amount in cents
     @book=Book.find(params[:book_id])
-	if @book.blank?
-		@amount=1000
-		@desc="AAA"
-	else
+	if @book.present?
     		@amount = (100* @book.price).to_i
     		@desc=@book.title
+	else
+     		flash[:error] = "book not found"
+     		redirect_to new_buy_book_path
 	end
 
     customer = Stripe::Customer.create(
      :email => params[:stripeEmail],
      :source  => params[:stripeToken]
    )
+	@card=Card.new(:stripe_token => params[:stripeToken], :user_id => current_user.id)
+	@card.save
 
    charge = Stripe::Charge.create(
      :customer    => customer.id,
@@ -34,9 +41,14 @@ class BuyBooksController < ApplicationController
      :currency    => 'usd'
    )
 
+	@book=BuyBook.new(:book_id => params[:book_id], :user_id => current_user.id)
+	@book.save
+
    rescue Stripe::CardError => e
      flash[:error] = e.message
      redirect_to new_buy_book_path
+
+
   end
 
   private

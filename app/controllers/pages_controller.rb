@@ -11,6 +11,11 @@ class PagesController < ApplicationController
 	@plans=Plan.all
   end
 
+  def page0
+	@books=BuyBook.where(user_id: current_user.id)
+	@plans=BuyPlan.where(user_id: current_user.id)
+  end
+
 
   def page_good
         if current_user.good?
