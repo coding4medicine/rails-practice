@@ -26,6 +26,12 @@ class BuyPlansController < ApplicationController
 
    subscription = customer.subscriptions.create(:plan => @plan.stripe_id )
 
+   @card=Card.new(:stripe_token => params[:stripeToken], :user_id => current_user.id)
+   @card.save
+
+   @plan=BuyPlan.new(:plan_id => params[:plan_id], :user_id => current_user.id)
+   @plan.save
+
    rescue Stripe::CardError => e
      flash[:error] = e.message
      redirect_to new_buy_plan_path
