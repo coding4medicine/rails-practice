@@ -1,18 +1,18 @@
-<h1>Pages#page0</h1>
-<p>Find me in app/views/pages/page0.html.erb</p>
+<p id="notice"><%= notice %></p>
 
-<p>Purchased books</p>
+<p>Current books you purchased</p>
     <% @books.each do |book| %>
         <p>book ID = <%= book.book_id %></p>
     <% end %>
 
-<p>Purchased plans</p>
+<p>Your current plan</p>
     <% @plans.each do |plan| %>
         <p>plan ID = <%= plan.plan_id %></p>
     <% end %>
 
-
+<P><A href=/pages/products>Buy other book</A></P>
+<P>
 <%= link_to "Change your password", edit_user_registration_path %>
-<p>
+</p>
 
 <a href=/users/sign_out>sign out</a>

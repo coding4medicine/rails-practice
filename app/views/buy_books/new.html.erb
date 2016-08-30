@@ -1,6 +1,21 @@
 Are you sure?
 <A href=agreement>agreement</A>
 
+<p>Use existing card:</p>
+
+<table>
+  <tbody>
+    <% @card.each do |card| %>
+      <tr>
+        <td><%= link_to card.last4, buy_books_path(:book_id=> params[:book_id], :customer_id=>card.stripe_token), method: :post %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<p> or use a new card:<p>
 
 <%= form_tag buy_books_path do %>
   <article>
@@ -13,7 +28,6 @@ Are you sure?
       <span>Amount: $<%=@book.price %></span>
     </label>
   </article>
-
   <input type="hidden" name="book_id" value="<%=@book.id %>">
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -22,3 +36,5 @@ Are you sure?
 	  data-email="<%= current_user.email %>"
           data-locale="auto"></script>
 <% end %>
+
+Or go back to the <A href=http://coding4medicine.com:21179/pages/products>book listing</A>

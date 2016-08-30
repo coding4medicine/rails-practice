@@ -3,6 +3,7 @@ class CreateBuyPlans < ActiveRecord::Migration[5.0]
     create_table :buy_plans do |t|
       t.integer :user_id
       t.integer :plan_id
+      t.integer :status
       t.datetime :request_date
       t.datetime :purchase_date
       t.datetime :end_date

@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160824215952) do
   create_table "buy_plans", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "plan_id"
+    t.integer  "status"
     t.datetime "request_date"
     t.datetime "purchase_date"
     t.datetime "end_date"

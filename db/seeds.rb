@@ -16,7 +16,7 @@
 @user.skip_confirmation!
 @user.save
 
-@a=Admin.new(:email => "def@mac.ro2", :password => "pass", :password_confirmation => "pass")
+@a=Admin.new(:email => "def@mac.ro", :password => "pass", :password_confirmation => "pass")
 @a.save
 
 Plan.create({name:'Tutorial', price: 4.99, interval: 'month', stripe_id: 'Tutorial' })
@@ -35,7 +35,7 @@ Book.create({title:'Learning to swim', author: "Michael Phelps", image: 'http://
 Book.create({title:'Learning to cook', author: "Tim Cook", image: 'http://cooking.jpg', price: 12.12, visible: true})
 
 BuyBook.create({user_id: 1, book_id: 1})
-BuyBook.create({user_id: 1, book_id: 3})
+BuyBook.create({user_id: 2, book_id: 4})
 
-BuyPlan.create({user_id: 1, plan_id: 1})
+BuyPlan.create({user_id: 1, plan_id: 1, status: 1})
 
