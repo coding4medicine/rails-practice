@@ -1,16 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>Current books you purchased</p>
+<p>Current books you purchased:</p>
     <% @books.each do |book| %>
         <p>book ID = <%= book.book_id %></p>
     <% end %>
 
-<p>Your current plan</p>
+<p>Your current plan:</p>
     <% @plans.each do |plan| %>
         <p>plan ID = <%= plan.plan_id %></p>
     <% end %>
 
-<P><A href=/pages/products>Buy other book</A></P>
+<% if @card.present? %>
+<p>Your cards:</p>
+<table>
+<% @card.sources.data.each do |data| %>
+<tr><td><p><%=data.id %></td><td><%=data.last4%></td></tr>
+<% end %>
+</table>
+<% end %>
+
+<p><a href=/sshkeys>upload your key</p>
+
+<P><A href=/pages/products>Buy other books</A></P>
 <P>
 <%= link_to "Change your password", edit_user_registration_path %>
 </p>

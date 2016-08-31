@@ -20,7 +20,7 @@
         <td><%= book.author %></td>
         <td><%= book.image %></td>
         <td><%= book.price %></td>
-        <td><%= link_to 'Buy', new_buy_book_path(:book_id=> book.id) %></td>
+        <td><%= link_to 'Buy', new_buy_book_path + "/"+book.id.to_s %></td>
       </tr>
     <% end %>
   </tbody>
@@ -45,7 +45,7 @@
       <tr>
         <td><%= plan.name %></td>
         <td><%= plan.price %></td>
-	<td><%= link_to 'Buy', new_buy_plan_path(:plan_id=>plan.id) %></td>
+	<td><%= link_to 'Buy', new_buy_plan_path+"/"+plan.id.to_s %></td>
       </tr>
     <% end %>
   </tbody>
@@ -53,3 +53,5 @@
 
 <br>
 
+
+<P>Already signed in? <a href=/users/sign_out>sign out</a></P>

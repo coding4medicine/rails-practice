@@ -40,11 +40,10 @@ ActiveRecord::Schema.define(version: 20160824215952) do
   create_table "buy_books", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "book_id"
-    t.integer  "card_id"
-    t.datetime "purchase_date"
+    t.integer  "card_four"
     t.float    "price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "buy_plans", force: :cascade do |t|
@@ -57,14 +56,6 @@ ActiveRecord::Schema.define(version: 20160824215952) do
     t.float    "price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "cards", force: :cascade do |t|
-    t.string   "stripe_token"
-    t.integer  "user_id"
-    t.integer  "last4"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "plans", force: :cascade do |t|
@@ -101,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160824215952) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "stripe_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

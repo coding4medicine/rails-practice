@@ -3,7 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
     has_many :sshkeys
-    has_many :cards
 
     has_many :books, through: :book_purchases
     has_many :book_purchases

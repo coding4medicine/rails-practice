@@ -1,23 +1,4 @@
-Are you sure?
-<A href=agreement>agreement</A>
 
-<p>Use existing card:</p>
-
-<table>
-  <tbody>
-    <% @card.each do |card| %>
-      <tr>
-        <td><%= link_to card.last4, buy_books_path(:book_id=> params[:book_id], :customer_id=>card.stripe_token), method: :post %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-<p> or use a new card:<p>
-
-<%= form_tag buy_books_path do %>
   <article>
     <% if flash[:error].present? %>
       <div id="error_explanation">
@@ -28,13 +9,41 @@ Are you sure?
       <span>Amount: $<%=@book.price %></span>
     </label>
   </article>
+
+Please confirm that you are purchasing the book and agree with this 
+<A href=agreement>agreement</A>.
+<p>
+
+
+<% if @card.present? %>
+<p>Use existing card:</p>
+<% @card.sources.data.each do |data| %>
+<p>Last 4 digits - <%= data.last4 %></p>
+<%= form_tag("/buy_books/edit", method: :get) do %>
+<%= hidden_field_tag(:id, @book.id) %>
+<%= hidden_field_tag(:card_id, data.id) %>
+<%= hidden_field_tag(:book_id, @book.id) %>
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<% end %>
+<% end %>
+
+
+<p>Use a new card:<p>
+
+<%= form_tag buy_books_path do %>
   <input type="hidden" name="book_id" value="<%=@book.id %>">
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="<%= @book.title %>"
           data-amount="<%= @book.price*100 %>"
 	  data-email="<%= current_user.email %>"
+	  data-allow-remember-me="false"
+	  data-billing-address="true"
+	  data-zip-code="true"
           data-locale="auto"></script>
 <% end %>
 
-Or go back to the <A href=http://coding4medicine.com:21179/pages/products>book listing</A>
+Or go back to the <A href=http://coding4medicine.com:21179/pages/products>book listing</A>.

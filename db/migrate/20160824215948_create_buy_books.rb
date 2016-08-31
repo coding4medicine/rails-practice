@@ -3,8 +3,7 @@ class CreateBuyBooks < ActiveRecord::Migration[5.0]
     create_table :buy_books do |t|
       t.integer :user_id
       t.integer :book_id
-      t.integer :card_id
-      t.datetime :purchase_date
+      t.integer :card_four
       t.float :price
 
       t.timestamps

@@ -1,7 +1,12 @@
 class PagesController < ApplicationController
 
   before_action :authenticate_user! 
-  skip_before_action :authenticate_user!, :only => [:index, :products]
+  skip_before_action :authenticate_user!, :only => [:index, :products, :webhook]
+  protect_from_forgery :except => :webhook
+
+  def webhook
+   head 200
+  end
 
   def index
   end
@@ -14,6 +19,10 @@ class PagesController < ApplicationController
   def page0
 	@books=BuyBook.where(user_id: current_user.id)
 	@plans=BuyPlan.where(user_id: current_user.id)
+
+        if current_user.stripe_id.present?
+               @card=Stripe::Customer.retrieve(current_user.stripe_id)
+        end
   end
 
 
